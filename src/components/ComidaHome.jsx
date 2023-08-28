@@ -39,7 +39,9 @@ function ComidaHome() {
                     className="mt-3 mb-3 d-flex justify-content-center bg-dark pt-3 mt-3"
                 >
                     <Tab eventKey="Entradas" title="Entradas">
-                        {/* <CardEntradas></CardEntradas> */}
+                        { 
+                        /* <CardEntradas></CardEntradas> */
+                        }
                     </Tab>
                     <Tab eventKey="Platos Principales" title="Platos Principales">
                         <CardPlatosPrincipales></CardPlatosPrincipales>
