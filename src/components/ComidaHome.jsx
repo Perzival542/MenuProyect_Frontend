@@ -13,13 +13,13 @@ import Axios from 'axios';
 
 function ComidaHome() {
 
-    const [products, setProducts] = useState([]);
+    const [menus, setMenus] = useState([]);
 
     useEffect(() => {
         try {
-            Axios.get('http://localhost:3000/api/products')
+            Axios.get('http://localhost:3000/api/menu')
         .then((response) => {
-            setProducts(response.data)
+            setMenus(response.data)
         })
         .catch((err) => {
             console.error(err);
@@ -28,6 +28,11 @@ function ComidaHome() {
             console.error(error);
         }
     })
+
+    
+
+    const entradasMenus = menus.filter(menu => menu.menu_category === 'entrada');
+    console.log(entradasMenus);
 
     return (
         <>
@@ -39,9 +44,10 @@ function ComidaHome() {
                     className="mt-3 mb-3 d-flex justify-content-center bg-dark pt-3 mt-3"
                 >
                     <Tab eventKey="Entradas" title="Entradas">
-                        { 
-                        /* <CardEntradas></CardEntradas> */
-                        }
+                        { entradasMenus.map((menu) => (
+                            <CardEntradas key={menu._id} title={menu.menu_name} imageSrc={menu.menu_img} description={menu.menu_detail}/>
+                        )
+                        )}
                     </Tab>
                     <Tab eventKey="Platos Principales" title="Platos Principales">
                         <CardPlatosPrincipales></CardPlatosPrincipales>
