@@ -30,6 +30,6 @@ export const createMenuSchema = z.object({
         })
         .min(1),
     menu_category: z
-        .enum(['papas fritas', 'empanadas', 'pizzas', 'hamburguesas', 'tacos' , 'postre', 'bebida sin alchohol', 'bebida alcoholica']),
+        .enum(['entrada', 'principal', 'postre', 'bebida']),
     menu_img: menuImageSchema
 })

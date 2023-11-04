@@ -1,27 +1,34 @@
 import { Link } from "react-router-dom";
+import { Image } from "react-bootstrap";
+import NavBar from '../components/Navbar.jsx';
+import '../css/HomePage.css';
+import CarouselBanner from "../components/Carousel.jsx";
+import MenuSection from "../components/menus/MenuSection.jsx";
+import terraza from "../assets/img/terraza.jpg";
 
-function HomePage() {
+const HomePage = () => {
   return (
-  <section className="bg-red-500 flex justify-center items-center">
-    <header className="bg-zinc-800 p-10">
-      <h1 className="text-5xl py-2 font-bold">React Tasks</h1>
-      <p className="text-md text-slate-400">
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dignissimos
-        fugit doloremque molestias recusandae labore repellat amet dicta tempore
-        necessitatibus facilis repellendus voluptas ducimus maiores deserunt sed
-        quo ratione provident debitis aut, voluptatem aliquam iste blanditiis
-        ex? Voluptatibus, fuga quasi necessitatibus cumque optio error enim,
-        officia accusantium vitae doloremque, molestias modi.
-      </p>
+  <div className='Home'>
+    <NavBar/>
+  <div className="container">
+   <div className='Carusel'>
+    <CarouselBanner/>
+   </div>
+  </div>
 
-      <Link
-        className="bg-zinc-500 text-white px-4 py-2 rounded-md mt-4 inline-block"
-        to="/register"
-      >
-        Get Started
-      </Link>
-    </header>
-  </section>
+    <div className='bg- mb-3'>
+      <MenuSection/>
+    </div>
+
+    <div className='d-none d-sm-block '>
+      <h1 className='bg-dark text-light text-center p-3 mb-0'>Disfruta de una hermosa vista de la ciudad.</h1>
+      <Image src={terraza} fluid />;
+    </div>
+
+    <div className='container-fluid bg-dark mt-3'>
+      {/* <Footer/> */}
+    </div>
+  </div>
   );
 }
 

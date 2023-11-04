@@ -6,7 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Card, Message, Button, Input, Label } from "../components/ui";
 import { loginSchema } from "../schemas/auth";
 
-export function LoginPage() {
+const LoginPage = () => {
   const {
     register,
     handleSubmit,
@@ -21,7 +21,7 @@ export function LoginPage() {
 
   useEffect(() => {
     if (isAuthenticated) {
-      navigate("/tasks");
+      navigate("/");
     }
   }, [isAuthenticated]);
 
@@ -63,3 +63,5 @@ export function LoginPage() {
     </div>
   );
 }
+
+export default LoginPage;

@@ -1,97 +1,52 @@
+import { Link, NavLink } from "react-router-dom";
 import { useAuth } from "../context/authContext";
 import { ButtonLink } from "./ui/ButtonLink";
-import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap';
-import { NavLink, Link } from "react-router-dom";
+import { Navbar, Container, Nav, Image, Button } from 'react-bootstrap';
+import { useLocation } from 'react-router-dom';
+import '../css/Navbar.css';
 
-export function NavBar() {
+const NavBar = () => {
   const { isAuthenticated, logout, user } = useAuth();
-  console.log(isAuthenticated, user)
+  console.log(isAuthenticated, user);
 
   return (
-    <Navbar expand="lg" bg="light" variant="light">
+    <>
+    <Navbar expand="lg" className="barranav">
       <Container>
-        <Navbar.Brand href="/">Home</Navbar.Brand>
-        <Navbar.Toggle onClick={toggleNavbar} aria-controls="responsive-navbar-nav"/>
-        <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className="mr-auto">
-            <Nav.Link href="/">Inicio</Nav.Link>
-            <Nav.Link href="/aboutUs">Acerca de</Nav.Link>
-            <NavDropdown title="Servicios" id="basic-nav-dropdown">
-              <NavDropdown.Item href="/menus">Menu</NavDropdown.Item>
-              <NavDropdown.Item href="#service2">Servicio 2</NavDropdown.Item>
-              <NavDropdown.Item href="#service3">Servicio 3</NavDropdown.Item>
-            </NavDropdown>
-            <Nav.Link href="#contact">Contacto</Nav.Link>
+        <Navbar.Brand href="/" className="enlaces">
+          <Image className="img-nav" height={100} width={100} src="https://i.imgur.com/7Q4hkT0.png" rounded />
+        </Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" className='bg-light'/>
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="mx-center">
+            <div className="d-flex justify-content-between align-content-center">
+              <NavLink className="nav-link text-light me-2" to="/">Inicio</NavLink>
+              <NavLink className="nav-link me-2" to="/menu">Menu</NavLink>
+              <NavLink className="nav-link me-2" to="/aboutUs">Sobre Nosotros</NavLink>
+            </div>
           </Nav>
-          <Nav>
-          <ul className="flex gap-x-2">
-           {isAuthenticated ? (
-          <>
-            <li>
-              Welcome {user.username}
-            </li>
-            <li>
-              <Link to="/" onClick={() => logout()}>
-                Logout
-              </Link>
-            </li>
-          </>
-        ) : (
-          <>
-            <li>
-              <ButtonLink to="/login">Login</ButtonLink>
-            </li>
-            <li>
-              <ButtonLink to="/register">Register</ButtonLink>
-            </li>
-          </>
-        )}
-      </ul>
-          </Nav>
+          <div className="d-flex align-items-center justify-content-center">
+            {isAuthenticated ? (
+              <>
+                <div className="me-3 text-light">
+                  Bienvenido, {user.username}
+                </div>
+                  <NavLink className="btn btn-danger me-4" onClick={() => logout()} to="/">
+                    Logout
+                  </NavLink>
+              </>
+            ) : (
+              <div className="d-flex">
+                  <NavLink className="btn btn-primary me-4" to="/login">Login</NavLink>
+                  <NavLink className="btn btn-primary me-4" to="/register">Register</NavLink>
+              </div>
+            )}
+          </div>
         </Navbar.Collapse>
       </Container>
     </Navbar>
-
-
-    // <nav className="navbar navbar-expand-lg nabvar-light bg-light">
-    //   <div className="container-fluid">
-    //     <a className="navbar-brand" href="#">
-    //       <img className="img-nav" height={100} width={100} src="https://i.imgur.com/7Q4hkT0.png" rounded/>
-    //     </a>
-    //     <button className="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-    //       <i className="fas fa-bars"></i>
-    //     </button>
-    //     <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
-    //       <div className="navbar-nav">
-    //         <a className="nav-link active" aria-current="page" href="/">Home</a>
-    //         <a className="nav-link" href="/menus">Menu</a>
-    //         <a className="nav-link" href="/aboutUs">Sobre Nosotros</a>
-    //       </div>
-    //     </div>
-    //   </div>
-    //   <ul className="flex gap-x-2">
-    //     {isAuthenticated ? (
-    //       <>
-    //         <li>
-    //           Welcome {user.username}
-    //         </li>
-    //         <li>
-    //           <Link to="/" onClick={() => logout()}>
-    //             Logout
-    //           </Link>
-    //         </li>
-    //       </>
-    //     ) : (
-    //       <>
-    //         <li>
-    //           <ButtonLink to="/login">Login</ButtonLink>
-    //         </li>
-    //         <li>
-    //           <ButtonLink to="/register">Register</ButtonLink>
-    //         </li>
-    //       </>
-    //     )}
-    //   </ul>
-    // </nav>
+    </>
   );
 }
+
+export default NavBar;

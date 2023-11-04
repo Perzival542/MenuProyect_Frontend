@@ -1,33 +1,29 @@
-import { useMenus } from "../../context/menuContext";
-import { Button, ButtonLink, Card } from "../ui";
+//import { useMenus } from "../../context/menuContext";
+//import { Card } from "react-bootstrap";
+//import "../../css/MenuCard.css";
 
-export function MenuCard({ menu }) {
-    const { deleteMenu } = useMenus();
+const MenuCard = ({ menu }) => {
+  console.log(menu);
+  const { menu_img, menu_name, menu_detail} = menu;
 
-    return (
-        <Card>
-            <header className="flex justify-between">
-                <h1 className="text-2xl font-bold">{menu.menu_name}</h1>
-                <div className="flex gap-x-2 items-center">
-                    <Button onClick={() => deleteMenu(menu._id)}>Delete</Button>
-                    <ButtonLink to={`/tasks/${menu._id}`}>Edit</ButtonLink>
-                </div>
-            </header>
-            <p className="text-slate-300">{menu.menu_detail}</p>
-            <p className="text-slate-300">{menu.state}</p>
-            <p className="text-slate-300">{menu.menu_price}</p>
-            <p className="text-slate-300">{menu.menu_category}</p>
-            <img src={menu.menu_img.img} alt={menu.menu_img.title}/>
-            {/* format date */}
-            {/* <p>
-                {menu.date &&
-                new Date(task.date).toLocaleDateString("en-US", {
-                    weekday: "long",
-                    year: "numeric",
-                    month: "long",
-                    day: "numeric",
-                })}
-            </p> */}
-        </Card>
-    );
+  return (
+    <div key={menu._id} className="card bg-dark h-100 d-flex flex-column" style={{width: "18rem", height: "16rem"}}>
+      <img
+        className="card-img-top"
+        src={menu_img.url}
+        alt={menu_img.title}
+        style={{ width: "100%", height: "200px"}}
+      />
+      <div className="card-body text-center text-light d-flex flex-column">
+        <h5 className="card-title font-weight-bold" style={{ fontSize: "1.25rem" }}>{menu_name}</h5>
+        <hr /> {/* Línea divisoria */}
+        <p className="card-text mb-4">{menu_detail}</p>
+        <div className="mt-auto mb-4">
+          <button className="btn btn-primary w-50 font-weight-bold">Agregar</button>
+        </div>
+      </div>
+    </div>
+  );
 }
+
+export default MenuCard;
