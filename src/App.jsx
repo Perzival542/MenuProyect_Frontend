@@ -8,6 +8,7 @@ import RegisterPage from "./pages/RegisterPage";
 import LoginPage from "./pages/LoginPage";
 import MenuPage from "./pages/MenuPage";
 import Footer from './components/Footer';
+import ProfilePage from "./pages/ProfilePage.jsx";
 //import { TaskFormPage } from "./pages/TaskFormPage";
 //import { TasksPage } from "./pages/TasksPage";
 //import { TaskProvider } from "./context/tasksContext";
@@ -26,6 +27,7 @@ const App = () => {
                 <Route path="/register" element={<RegisterPage />} />
                 <Route path="/menu" element={<MenuPage/>}/>
                 <Route element={<ProtectedRoute />}>
+                  <Route path="/my-account" element={<ProfilePage/>}/>
                   {/* <Route path="/users" element={<UsersPage/>}/>
                   <Route path="/menuComidas" element={<MenuComidasPage/>}/> */}
                   {/* <Route path="/tasks" element={<TasksPage />} />
