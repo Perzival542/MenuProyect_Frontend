@@ -6,6 +6,7 @@ import CarouselBanner from "../components/Carousel.jsx";
 import MenuSection from "../components/menus/MenuSection.jsx";
 import terraza from "../assets/img/terraza.jpg";
 
+
 const HomePage = () => {
   return (
   <div className='Home'>

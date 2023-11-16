@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Card, Message, Button, Input, Label } from "../components/ui";
 import { loginSchema } from "../schemas/auth";
+import { toast } from 'react-toastify';
 
 const LoginPage = () => {
   const {
@@ -17,10 +18,11 @@ const LoginPage = () => {
   const { signin, errors: loginErrors, isAuthenticated } = useAuth();
   const navigate = useNavigate();
 
-  const onSubmit = (data) => signin(data);
+  const onSubmit =  (data) => signin(data);
 
   useEffect(() => {
     if (isAuthenticated) {
+      toast.success(`¡Bienvenido/a!`);
       navigate("/");
     }
   }, [isAuthenticated]);

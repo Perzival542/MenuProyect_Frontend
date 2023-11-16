@@ -9,23 +9,30 @@ import LoginPage from "./pages/LoginPage";
 import MenuPage from "./pages/MenuPage";
 import Footer from './components/Footer';
 import ProfilePage from "./pages/ProfilePage.jsx";
+import ErrorPage from "./pages/ErrorPage.jsx";
+import InProgress from "./pages/InProgressPage.jsx";
 //import { TaskFormPage } from "./pages/TaskFormPage";
 //import { TasksPage } from "./pages/TasksPage";
 //import { TaskProvider } from "./context/tasksContext";
 import { MenuProvider } from "./context/menuContext";
 import { UserProvider } from "./context/userContext";
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 const App = () => {
   return (
     <AuthProvider>
       <MenuProvider>
         <UserProvider>
+        <ToastContainer autoClose={1500} theme="dark" hideProgressBar/>
           <BrowserRouter>
               <Routes>
                 <Route path="/" element={<HomePage/>} />
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/register" element={<RegisterPage />} />
                 <Route path="/menu" element={<MenuPage/>}/>
+                <Route path="/working" element={<InProgress/>}/>
+                <Route path="*" element={<ErrorPage/>}/>
                 <Route element={<ProtectedRoute />}>
                   <Route path="/my-account" element={<ProfilePage/>}/>
                   {/* <Route path="/users" element={<UsersPage/>}/>

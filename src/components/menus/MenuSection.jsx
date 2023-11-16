@@ -2,12 +2,16 @@ import React, { useEffect, useState } from "react";
 import { Tab, Tabs } from "react-bootstrap";
 import MenuCard from "./MenuCard";
 import { useMenus } from "../../context/menuContext";
+import Loader from "../ui/Loader";
 
 const MenuSection = () => {
     const { menus, getMenus } = useMenus();
 
     useEffect(() => {
-        getMenus();
+        getMenus()
+        .catch(error => {
+            console.log("Error al cargar los menús:", error);
+        });
     }, []);
 
     const entradas = menus.filter((menu) => menu.menu_category === 'entrada');
@@ -20,7 +24,7 @@ const MenuSection = () => {
     console.log(bebidas);
 
     return (
-        <>
+            <>
             <Tabs defaultActive="profile" id="uncontrolled-tab-example" className="mt-3 mb-3 d-flex justify-content-center bg-dark pt-3">
                 <Tab eventKey="Entradas" title="Entradas">
                   <div className="row d-flex mx-auto w-100">
@@ -35,7 +39,7 @@ const MenuSection = () => {
                                 </div>
                             ))
                         ) : (
-                            console.log("No hay menus entradas")
+                            <Loader/>
                         )
                     }
                   </div>
@@ -53,7 +57,7 @@ const MenuSection = () => {
                                 </div>
                             ))
                         ) : (
-                            console.log("No hay menus principales")
+                            <Loader/>
                         )
                     }
                     </div>
@@ -71,7 +75,7 @@ const MenuSection = () => {
                                 </div>
                             ))
                         ) : (
-                            console.log("No hay menus postres")
+                            <Loader/>
                         )
                     }
                     </div>
@@ -89,14 +93,14 @@ const MenuSection = () => {
                                 </div>
                             ))
                         ) : (
-                            console.log("No hay menus bebidas")
+                            <Loader/>
                         )
                     }
                     </div>
                 </Tab>
             </Tabs>
         </>
-    )
+    );
 }
 
 export default MenuSection;
