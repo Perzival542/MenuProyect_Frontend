@@ -18,6 +18,7 @@ import { MenuProvider } from "./context/menuContext";
 import { UserProvider } from "./context/userContext";
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import AdminPage from "./pages/AdminPage.jsx";
 
 const App = () => {
   return (
@@ -35,6 +36,7 @@ const App = () => {
                 <Route path="*" element={<ErrorPage/>}/>
                 <Route element={<ProtectedRoute />}>
                   <Route path="/my-account" element={<ProfilePage/>}/>
+                  <Route path="/admin" element={<AdminPage/>}/>
                   {/* <Route path="/users" element={<UsersPage/>}/>
                   <Route path="/menuComidas" element={<MenuComidasPage/>}/> */}
                   {/* <Route path="/tasks" element={<TasksPage />} />

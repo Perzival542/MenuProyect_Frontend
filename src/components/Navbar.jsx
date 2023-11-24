@@ -39,6 +39,11 @@ const NavBar = () => {
                   </button>
                   <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                     <li><a class="dropdown-item" href="/my-account">Mi Cuenta</a></li>
+                    { user.rol && user.rol === "admin"  ? (
+                      <>
+                      <li><a class="dropdown-item" href="/admin">Panel de Administrador</a></li>
+                      </>
+                    ) : (<>  </>)}
                     <li><a class="dropdown-item" href="/" onClick={() => logout()}>Cerrrar Sesión</a></li>
                   </ul>
                 </div>
