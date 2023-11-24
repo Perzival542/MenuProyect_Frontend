@@ -5,7 +5,7 @@ import {
     getOrdersRequest,
     getOrderRequest,
     updateOrderRequest,
-} from "../api/orders";
+} from "../api/order";
 
 const OrderContext = createContext();
 

@@ -1,35 +1,31 @@
 import React, { useEffect } from "react";
 import { Tab, Tabs } from "react-bootstrap";
 import NavBar from "../components/Navbar";
-import Tables from "../components/Tables";
-import { useMenus } from "../context/menuContext";
-import { useUsers } from "../context/userContext";
+import UserTable from "../components/tables/userTable";
+import MenuTable from "../components/tables/menuTable";
+import OrdersTable from "../components/tables/ordersTable";
+
 
 const AdminPage = () => {
-    const { menus, getMenus } = useMenus();
-    const { users, getUsers } = useUsers();
-    //const { orders, getOrders } = useOrders;
-
-    useEffect(() => {
-        getUsers();
-        getMenus();
-    }, []);
-
-    console.log(menus);
 
     return(
         <div className="adminPage">
             <NavBar/>
-            <div className="container">
+            <div className="tables-container m-4">
                 <Tabs defaultActive="profile" id="uncontrolled-tab-example" className="mt-3 mb-3 d-flex justify-content-center bg-dark pt-3">
                     <Tab eventKey="Usuarios" title="Usuarios">
                         <div className="table-container">
-                            <Tables headers={["Nombre y Apellido", "Email", "Estado", "Rol", "Fecha de Creación", "Fecha de Actualización"]} data={users}/>
+                            <UserTable/>
                         </div>
                     </Tab>
                     <Tab eventKey="Menus" title="Menus">
                         <div className="table-container">
-                            <Tables headers={["Nombre del Menu", "Estado del Menu", "Precio", "Detalle", "Categoria", "Fecha de Creación", "Fecha de Actualización"]} data={menus}/>
+                            <MenuTable/>
+                        </div>
+                    </Tab>
+                    <Tab eventKey="Orders" title="Orders">
+                        <div className="table-container">
+                            <OrdersTable/>
                         </div>
                     </Tab>
                 </Tabs>

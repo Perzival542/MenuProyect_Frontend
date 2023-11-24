@@ -16,6 +16,7 @@ import InProgress from "./pages/InProgressPage.jsx";
 //import { TaskProvider } from "./context/tasksContext";
 import { MenuProvider } from "./context/menuContext";
 import { UserProvider } from "./context/userContext";
+import { OrderProvider } from "./context/orderContext.jsx";
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import AdminPage from "./pages/AdminPage.jsx";
@@ -24,6 +25,7 @@ const App = () => {
   return (
     <AuthProvider>
       <MenuProvider>
+        <OrderProvider>
         <UserProvider>
         <ToastContainer autoClose={1500} theme="dark" hideProgressBar/>
           <BrowserRouter>
@@ -48,6 +50,7 @@ const App = () => {
               <Footer/>
           </BrowserRouter>
         </UserProvider>
+        </OrderProvider>
       </MenuProvider>
     </AuthProvider>
   );
