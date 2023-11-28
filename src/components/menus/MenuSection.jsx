@@ -4,6 +4,7 @@ import MenuCard from "./MenuCard";
 import { useMenus } from "../../context/menuContext";
 import Loader from "../ui/Loader";
 import "../../css/MenuSection.css";
+import { useAuth } from "../../context/authContext";
 
 const MenuSection = () => {
     const { menus, getMenus } = useMenus();

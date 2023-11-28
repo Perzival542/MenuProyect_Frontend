@@ -2,8 +2,11 @@
 import NavBar from "../components/Navbar";
 import "../css/ProfilePage.css";
 import profilePicture from "../assets/img/foto_perfil.jpeg"
+import { useAuth } from "../context/authContext";
 
 const ProfilePage = () => {
+    const { user } = useAuth();
+    console.log(user);
     return (
         <>
         <NavBar/>
@@ -14,8 +17,8 @@ const ProfilePage = () => {
                     <div className="d-flex flex-column align-items-center text-center mt-2 mb-2">
                         <img className="rounded-circle" src={profilePicture} alt="profile picture" width="150"/>
                         <div className="mt-3">
-                            <h4 className="fw-bold fs-4">Franco Espinoza</h4>
-                            <p className="text-muted">francojiseespinoza@gmail.com</p>
+                            <h4 className="fw-bold fs-4">{user.username}</h4>
+                            <p className="text-muted">{user.email}</p>
                         </div>
                     </div>
                     <a role="button" className="btn btn-light d-flex row p-3" href="/working">

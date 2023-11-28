@@ -1,14 +1,16 @@
 import { NavLink } from "react-router-dom";
 import { useAuth } from "../context/authContext";
 //import { ButtonLink } from "./ui/ButtonLink";
-import { Navbar, Container, Nav, Image, Button } from 'react-bootstrap';
+import { Navbar, Container, Nav, Image } from 'react-bootstrap';
 //import { useLocation } from 'react-router-dom';
-import { ToastContainer, toast } from "react-toastify";
+//import { ToastContainer, toast } from "react-toastify";
+import { useState } from "react";
 import "react-toastify/dist/ReactToastify.css";
 import '../css/Navbar.css';
 
 const NavBar = () => {
   const { isAuthenticated, logout, user } = useAuth();
+  const [ shopCart, setShopCart ] = useState([]);
   console.log(isAuthenticated, user);
 
   return (
@@ -39,20 +41,35 @@ const NavBar = () => {
                   </button>
                   <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                     <li><a class="dropdown-item" href="/my-account">Mi Cuenta</a></li>
-                    { user.rol && user.rol === "admin"  ? (
-                      <>
+                    { (user.rol === "admin" || user.rol === "root" ) && (
                       <li><a class="dropdown-item" href="/admin">Panel de Administrador</a></li>
-                      </>
-                    ) : (<>  </>)}
+                    )}
                     <li><a class="dropdown-item" href="/" onClick={() => logout()}>Cerrrar Sesión</a></li>
                   </ul>
                 </div>
-                {/* <div className="me-3 text-light">
-                  Bienvenido, {user.username}
+                {isAuthenticated && user && user.rol === "client" && (
+                    <div class="m-2">
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#cartModal">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 24 24"><path fill="currentColor" d="M19 20c0 1.11-.89 2-2 2a2 2 0 0 1-2-2c0-1.11.89-2 2-2a2 2 0 0 1 2 2M7 18c-1.11 0-2 .89-2 2a2 2 0 0 0 2 2c1.11 0 2-.89 2-2s-.89-2-2-2m.2-3.37l-.03.12c0 .14.11.25.25.25H19v2H7a2 2 0 0 1-2-2c0-.35.09-.68.24-.96l1.36-2.45L3 4H1V2h3.27l.94 2H20c.55 0 1 .45 1 1c0 .17-.05.34-.12.5l-3.58 6.47c-.34.61-1 1.03-1.75 1.03H8.1l-.9 1.63M8.5 11H10V9H7.56l.94 2M11 9v2h3V9h-3m3-1V6h-3v2h3m3.11 1H15v2h1l1.11-2m1.67-3H15v2h2.67l1.11-2M6.14 6l.94 2H10V6H6.14Z"/></svg>
+                    </button>
+                    <div class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="cartModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h1 class="modal-title fs-5 text-dark" id="cartModalLabel">Pedidos</h1>
+                          <button class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                        </div>
+                        <div class="modal-footer">
+                          <button class="btn btn-danger" data-bs-dismiss="modal">Cancelar Pedido</button>
+                          <button class="btn btn-primary">Completar Pedido</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                  <NavLink className="btn btn-danger me-4" onClick={() => logout()} to="/">
-                    Logout
-                  </NavLink> */}
+                  )}
               </>
             ) : (
               <div className="d-flex">

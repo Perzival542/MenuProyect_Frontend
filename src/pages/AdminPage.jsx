@@ -9,10 +9,10 @@ import OrdersTable from "../components/tables/ordersTable";
 const AdminPage = () => {
 
     return(
-        <div className="adminPage">
+        <div className="adminPage ">
             <NavBar/>
-            <div className="tables-container m-4">
-                <Tabs defaultActive="profile" id="uncontrolled-tab-example" className="mt-3 mb-3 d-flex justify-content-center bg-dark pt-3">
+            <div className="tables-container m-4 h-auto">
+                <Tabs defaultactive="profile" id="uncontrolled-tab-example" className="mt-3 mb-3 d-flex justify-content-center bg-dark pt-3">
                     <Tab eventKey="Usuarios" title="Usuarios">
                         <div className="table-container">
                             <UserTable/>

@@ -15,7 +15,7 @@ const LoginPage = () => {
   } = useForm({
     resolver: zodResolver(loginSchema),
   });
-  const { signin, errors: loginErrors, isAuthenticated } = useAuth();
+  const { signin, errors: loginErrors, isAuthenticated, user } = useAuth();
   const navigate = useNavigate();
 
   const onSubmit =  (data) => signin(data);
@@ -23,7 +23,11 @@ const LoginPage = () => {
   useEffect(() => {
     if (isAuthenticated) {
       toast.success(`¡Bienvenido/a!`);
-      navigate("/");
+      if(user.rol !== "client"){
+        navigate("/admin");
+      } else {
+        navigate("/");
+      }
     }
   }, [isAuthenticated]);
 

@@ -13,8 +13,8 @@ const MenuTable = () => {
 
 
     return(
-        <table class="table text-center table-dark table-hover table-responsive">
-            <thead class="thead-dark">
+        <table className="table text-center table-dark table-hover table-responsive">
+            <thead>
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Imagen</th>
@@ -41,8 +41,8 @@ const MenuTable = () => {
                         <td>{menu.createdAt}</td>
                         <td>{menu.updatedAt}</td>
                         <td>
-                            <button class="btn btn-primary m-1">Modificar</button>
-                            <button class="btn btn-danger m-1">Eliminar</button>
+                            <button className="btn btn-primary m-1">Modificar</button>
+                            <button className="btn btn-danger m-1">Eliminar</button>
                         </td>
                     </tr>
                 ))}

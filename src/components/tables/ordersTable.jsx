@@ -13,7 +13,7 @@ const OrdersTable = () => {
 
 
     return(
-        <table class="table text-center table-dark table-hover table-responsive">
+        <table className="table text-center table-dark table-hover table-responsive">
             <thead>
                 <tr>
                     <th scope="col">#</th>
@@ -39,8 +39,8 @@ const OrdersTable = () => {
                         <td>{order.createdAt}</td>
                         <td>{order.updatedAt}</td>
                         <td>
-                            <button class="btn btn-primary m-1">Modificar</button>
-                            <button class="btn btn-danger m-1">Eliminar</button>
+                            <button className="btn btn-primary m-1">Modificar</button>
+                            <button className="btn btn-danger m-1">Eliminar</button>
                         </td>
                     </tr>
                 ))}
