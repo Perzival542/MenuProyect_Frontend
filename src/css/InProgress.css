@@ -1,0 +1,25 @@
+.countdown-item {
+    background-color: #007bff;
+    color: white;
+    padding: 20px;
+    margin-right: 10px;
+    border-radius: 10px;
+    display: inline-block;
+    width: 20%;
+}
+
+.cooming-soon {
+    width: 100%;
+    height: 80%;
+}
+
+.large-text {
+    font-size: 2em;
+}
+
+.countdown-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}

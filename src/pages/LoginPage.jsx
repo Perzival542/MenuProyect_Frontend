@@ -18,7 +18,7 @@ const LoginPage = () => {
   const { signin, errors: loginErrors, isAuthenticated, user } = useAuth();
   const navigate = useNavigate();
 
-  const onSubmit =  (data) => signin(data);
+  const onSubmit = (data) => signin(data);
 
   useEffect(() => {
     if (isAuthenticated) {
