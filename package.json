@@ -21,6 +21,8 @@
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.47.0",
     "react-icons": "^4.9.0",
+    "react-loader-spinner": "^6.1.6",
+    "react-loader-spinners": "^1.0.0",
     "react-router-dom": "^6.11.2",
     "react-spinners": "^0.13.8",
     "react-table": "^7.8.0",

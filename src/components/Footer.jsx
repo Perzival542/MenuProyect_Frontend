@@ -9,7 +9,7 @@ const Footer= () => {
             <footer className="text-white py-4">
                 <div className="conteiner">
                     <nav className="row">
-                    <Link to='/' className="col-12 col-md-3 d-flef alling-items-center justyfy-content-center">
+                    <Link to='/' className="col-12 col-md-3 d-flex alling-items-center justyfy-content-center">
                     <div className="image_container">
                         <Image className='img-nav' height={80} width={80} src="https://i.imgur.com/7Q4hkT0.png"   rounded/>
                     </div>

@@ -16,11 +16,11 @@ const UserTable = () => {
     }, [])
 
     useEffect(() => {
-        if (users.length > 0) {
+        if (Array.isArray(users) && users.length > 0) {
             filterUsersByRole();
         }
     }, [users]);
-    
+
     const filterUsersByRole = () => {
         if (user && user.rol === "root") {
             setRootUser(true);
@@ -35,7 +35,7 @@ const UserTable = () => {
     };
 
     const handleDelete = (id) => {
-        //deleteUser(id);
+        deleteUser(id);
         console.log("Deleting user:", id);
     }
 
@@ -48,6 +48,7 @@ const UserTable = () => {
             <thead>
                 <tr>
                     <th scope="col">#</th>
+                    <th scope="col">Foto de Perfil</th>
                     <th scope="col">Nombre y Apellido</th>
                     <th scope="col">Email</th>
                     <th scope="col">Estado</th>
@@ -61,6 +62,7 @@ const UserTable = () => {
                 {filteredUserList.map((user, index) => (
                     <tr key={index}>
                         <th scope="row">{index + 1}</th>
+                        {/* <td><img src={user.profile_img.url} width={80} height={80}/></td> */}
                         <td>{user.nameSurname}</td>
                         <td>{user.email}</td>
                         <td>{user.state}</td>

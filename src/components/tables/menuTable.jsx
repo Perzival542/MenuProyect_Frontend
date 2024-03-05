@@ -13,7 +13,7 @@ const MenuTable = () => {
 
 
     return(
-        <table className="table text-center table-dark table-hover table-responsive">
+        <table className="table text-center table-dark table-hover table-responsive mb-5">
             <thead>
                 <tr>
                     <th scope="col">#</th>

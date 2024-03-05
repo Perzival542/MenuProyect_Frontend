@@ -1,12 +1,41 @@
-//import react from "React";
+import { useState } from 'react';
 import NavBar from "../components/Navbar";
 import "../css/ProfilePage.css";
 import profilePicture from "../assets/img/foto_perfil.jpeg"
 import { useAuth } from "../context/authContext";
+import { useUsers } from "../context/userContext";
 
 const ProfilePage = () => {
+    const { updateUser } = useUsers();
     const { user } = useAuth();
     console.log(user);
+
+    const [formData, setFormData] = useState({
+        name: "",
+        email: "",
+        password: "",
+        confirmPassword: "",
+        profile_img: null,
+    });
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData({ ...formData, [name]: value });
+    };
+
+    const handleImageChange = (e) => {
+        setFormData({ ...formData, profile_img: e.target.files[0] });
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            await updateUser(user.id, formData);
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
     return (
         <>
         <NavBar/>
@@ -23,7 +52,7 @@ const ProfilePage = () => {
                     </div>
                     <a role="button" className="btn btn-light d-flex row p-3" href="/working">
                         <div className="col flex-grow-0">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 14 14"><g fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"><path d="M11.5 5c0 2.49-4.5 8.5-4.5 8.5S2.5 7.49 2.5 5a4.5 4.5 0 0 1 9 0Z"/><circle cx="7" cy="5" r="1.5"/></g></svg>
+                            <svg xmlns={user.profile_img} width="1.5em" height="1.5em" viewBox="0 0 14 14"><g fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"><path d="M11.5 5c0 2.49-4.5 8.5-4.5 8.5S2.5 7.49 2.5 5a4.5 4.5 0 0 1 9 0Z"/><circle cx="7" cy="5" r="1.5"/></g></svg>
                         </div>
                         <div className="col text-start">
                             <span>Mis Direcciones</span>
@@ -81,25 +110,25 @@ const ProfilePage = () => {
                                             <button type="button" className="btn-close bg-danger d-flex justify-content-center align-items-center text-white" data-bs-dismiss="modal" aria-label="Close">X</button>
                                         </div>
                                         <div className="modal-body p-4">
-                                            <form>
+                                            <form onSubmit={handleSubmit}>
                                                 <div className="form-outline mb-4">
                                                     <label className="form-label" htmlFor="name">Nombre</label>
-                                                    <input type="text" id="name" className="form-control" />
+                                                    <input type="text" id="name" className="form-control" name="name" value={formData.name} onChange={handleChange}/>
                                                 </div>
 
                                                 <div className="form-outline mb-4">
                                                     <label className="form-label" htmlFor="email">E-mail</label>
-                                                    <input type="email" id="email" className="form-control" />
+                                                    <input type="email" id="email" className="form-control" name="email" value={formData.email} onChange={handleChange}/>
                                                 </div>
 
                                                 <div className="form-outline mb-4">
                                                     <label className="form-label" htmlFor="password">Contraseña</label>
-                                                    <input type="password" id="password" className="form-control" />
+                                                    <input type="password" id="password" className="form-control" name="password" value={formData.password} onChange={handleChange}/>
                                                 </div>
 
                                                 <div className="form-outline mb-4">
                                                     <label className="form-label" htmlFor="confirmPassword">Confirmar Contraseña</label>
-                                                    <input type="password" id="confirmPassword" className="form-control" />
+                                                    <input type="password" id="confirmPassword" className="form-control" name="confirmPassword" value={formData.confirmPassword} onChange={handleChange}/>
                                                 </div>
 
                                                 <div className="form-outline mb-4">
@@ -109,11 +138,11 @@ const ProfilePage = () => {
                                                             id="image"
                                                             className="form-control"
                                                             accept="image/*"  // Limitar a archivos de imagen
-                                                            //onChange=""
+                                                            onChange={handleImageChange}
                                                         />
                                                 </div>
 
-                                                <button type="submit" className="btn btn-primary active">Sign up</button>
+                                                <button type="submit" className="btn btn-primary active">Guardar Cambios</button>
                                             </form>
                                         </div>
                                     </div>
@@ -147,9 +176,6 @@ const ProfilePage = () => {
                         </div>
                     </div>
                 </div>
-            </div>
-            <div className="col">
-
             </div>
         </div>
         </>
